@@ -1,0 +1,29 @@
+.acceptButton, .canselButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 10px 0;
+    width: 100%;
+    height: 50px;
+    border-radius: 5px;
+
+    button {
+        color: white;
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+    }
+    
+    button:focus {
+        outline: none;
+    }
+}
+
+.acceptButton {
+    background-color: #1a9cb0;
+}
+
+.canselButton {
+    background-color: red;
+    
+}

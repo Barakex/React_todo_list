@@ -1,27 +1,33 @@
-import mongoose from 'mongoose';
-import '../models/Todo';
-import config from '../../etc/config.json';
+const mongoose = require('mongoose');
+const config = require('../../etc/config.json');
+const moment = require('moment');
+const { Todo } = require('../models/Todo');
 
-const Todo = mongoose.model('Todo');
-
-export function setUpConnection() {
+module.exports.setUpConnection = function () {
   mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`);
-}
+};
 
-export function listTodo() {
+function listTodoFunc() {
   return Todo.find();
 }
+module.exports.listTodo = listTodoFunc;
 
-export function createTodo(data) {
+module.exports.createTodo = function (data) {
   const todo = new Todo({
     title: data.title,
     text: data.text,
-    createdAt: new Date(),
+    active: false,
+    complate: false,
+    createdAt: moment().format('LLL'),
   });
 
   return todo.save();
-}
+};
 
-export function deleteTodo(id) {
+module.exports.deleteTodo = function (id) {
   return Todo.findById(id).remove();
-}
+};
+
+module.exports.putTodo = function (data) {
+  return Todo.findById(data._id).update(data);
+};

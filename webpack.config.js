@@ -1,4 +1,5 @@
 const path = require('path');
+const postcssModulesValue = require('postcss-modules-values');
 
 module.exports = (env, options) => ({
   devtool: options.mode === 'production' ? 'cheap-source-map' : 'eval-sourcemap',
@@ -20,6 +21,7 @@ module.exports = (env, options) => ({
     port: '3000',
     open: true,
     overlay: true,
+    historyApiFallback: true,
   },
 
   module: {
@@ -27,19 +29,43 @@ module.exports = (env, options) => ({
       {
         test: /\.jsx$/,
         exclude: /node_modules/,
-        loader: 'babel-loader?presets[]=es2015&presets[]=react',
-      },
-      {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['es2015', 'react'],
+            plugins: [
+              'transform-class-properties',
+            ],
+          },
+        },
       },
       {
         test: /\.scss$/,
         use: [
-          'style-loader',
-          'css-loader',
+          require.resolve('style-loader'),
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
+          },
           'sass-loader',
+          {
+            loader: require.resolve('postcss-loader'),
+            options: {
+              ident: 'postcss',
+              plugins: [
+                postcssModulesValue,
+              ],
+            },
+          },
         ],
+      },
+      {
+        test: /\.svg$/,
+        loader: 'svg-inline-loader',
       },
     ],
   },

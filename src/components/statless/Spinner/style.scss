@@ -1,0 +1,24 @@
+.loader{
+	display: flex;
+    align-items: center;
+	justify-content: center;
+	position: relative;
+	margin: 20px;
+	width: 50%;
+}
+.basic{
+	content:"";
+	border-radius:50%;
+	border-top:3px solid blue;
+	border-left:3px solid blue;
+	width:100px;
+	height:100px;
+	animation:rotate 1s linear infinite;
+	box-sizing:border-box;
+	margin:0;
+}
+@keyframes rotate{
+    to{
+        transform:rotate(360deg);
+    }
+}

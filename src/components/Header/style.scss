@@ -2,13 +2,13 @@
     display: flex;
     justify-content: center;
     background-color: #1a9cb0;
-    &--menu_container {
+    .menu_container {
       width: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
     }
-    &--menu_item, &--menu_item_active{
+    .menu_item, .menu_item_active{
       display: flex;
       justify-content: center;
       align-items: center;
@@ -21,7 +21,7 @@
       color: #464547;
       text-decoration: none;
     }
-    &--menu_item_active {
+    .menu_item_active {
       text-decoration: underline;
     }
 }

@@ -1,11 +1,13 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
 const TodoSchema = new Schema({
-  title: { type: String },
+  title: { type: String, required: true },
   text: { type: String, required: true },
-  createdAt: { type: Number },
+  active: { type: Boolean },
+  complate: { type: Boolean },
+  createdAt: { type: String },
 });
 
-const Todo = mongoose.model('Todo', TodoSchema); // eslint-disable-line
+exports.Todo = mongoose.model('Todo', TodoSchema);

@@ -1,4 +1,15 @@
+* {
+    box-sizing: border-box;
+    color: #464547;
+}
+
 body {
     margin: 0;
     padding: 0;
+    background: $bg-color;
+}
+
+button {
+    border: none;
+    background-color: transparent;
 }

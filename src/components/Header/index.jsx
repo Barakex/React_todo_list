@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import style from './style.scss';
 
 export default class Header extends React.Component {
   render() {
@@ -17,15 +18,15 @@ export default class Header extends React.Component {
     ];
 
     return (
-      <div className="header">
-        <div className="header--menu_container">
+      <div className={style.header}>
+        <div className={style.menu_container}>
           {
             menuItems.map(item => (
               <NavLink
                 exact
                 key={item.id}
-                className="header--menu_item"
-                activeClassName="header--menu_item_active"
+                className={style.menu_item}
+                activeClassName={style.menu_item_active}
                 to={item.link}
               >
                 {item.name}

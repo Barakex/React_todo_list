@@ -1,0 +1,87 @@
+.todoItem, .todoItemComplate {
+    background-color: #edeef0;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+
+    &:focus {
+        outline: none;
+    }
+    .header {
+        h3 {
+            margin: 0;
+            max-width: 200px;
+            font-style: italic;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+        span {
+            font-style: italic; 
+        }
+    }
+   
+    p {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+    }
+
+    .header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .foot {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: relative;
+        z-index: 100;
+        button:focus {
+            outline: none
+        }
+
+        .deleteButton svg, .updateButton svg {
+            display: flex;
+            width: 28px;
+            height: 28px;
+            fill: #464547;
+       }
+
+       .deleteButton, .updateButton :hover {
+            cursor: pointer;
+       }
+
+       .updateButton svg {
+            width: 24px;
+            height: 24px;
+            fill: #464547;
+       }
+    }
+}
+
+.todoItemComplate {
+    background-color: #1a9cb0;
+    h3, p {
+        color: white;
+    }
+    .header {
+        span{ color: white; }
+    }
+    .foot {
+        .deleteButton svg, .updateButton svg {
+            fill: white;
+        }
+    }
+}
+
+.modalContent {
+    width: 100%;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class FilmPortal extends React.Component {
+class FilmPortal extends React.Component {
   render() {
     return (
       <div className="dashboard">
@@ -9,3 +9,5 @@ export default class FilmPortal extends React.Component {
     );
   }
 }
+
+export default FilmPortal;

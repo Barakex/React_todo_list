@@ -2,6 +2,7 @@ import {
   GET_TODO_LIST,
   SAVE_INPUT_VALUE,
   CLEAR_INPUT_VALUE,
+  SEARCH_TASKS,
 } from './constants';
 
 export const getTodoList = data => ({
@@ -67,6 +68,26 @@ export function makeAnItemActive(data) {
       body: JSON.stringify({ ...data }),
     })
       .then(() => dispatch(itemsFetchData()))
+      .catch(() => console.log('error'));
+  };
+}
+
+export const searchTasks = data => ({
+  type: SEARCH_TASKS,
+  data,
+});
+
+export function makeSearchItems(data) {
+  return (dispatch) => {
+    fetch('http://localhost:8080/todo/search', { // eslint-disable-line
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ data }),
+    })
+      .then(response => response.json())
+      .then(items => dispatch(searchTasks(items)))
       .catch(() => console.log('error'));
   };
 }

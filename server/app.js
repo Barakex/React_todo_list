@@ -16,6 +16,9 @@ app.get('/todo', (req, res) => {
   db.listTodo().then(data => res.send(data));
 });
 
+app.post('/todo/search', (req, res) => {
+  db.searchTodo(req.body).then(data => res.send(data));
+});
 
 app.post('/todo', (req, res) => {
   db.createTodo(req.body).then(data => res.send(data));

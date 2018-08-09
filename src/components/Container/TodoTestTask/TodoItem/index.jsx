@@ -105,13 +105,6 @@ class TodoItem extends React.Component {
       modal: false,
     });
 
-    // const payload = {
-    //   ...todos.todoList.todoValue,
-    //   title: '',
-    //   text: '',
-    // };
-    // saveInputValue(payload);
-
     clearInputValue();
     makeAnItemActive(payload);
   }
@@ -182,7 +175,7 @@ const mapDispatchToProps = dispatch => (
     deleteTodoItem,
     makeAnItemActive,
     saveInputValue,
-    clearInputValue
+    clearInputValue,
   }, dispatch)
 );
 

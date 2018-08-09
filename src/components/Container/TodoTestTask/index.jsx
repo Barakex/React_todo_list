@@ -7,7 +7,6 @@ import moment from 'moment';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import Spinner from '../../statless/Spinner';
-import Button from '../../statless/Button';
 
 import style from './style.scss';
 
@@ -15,6 +14,8 @@ import {
   itemsFetchData,
   postTodoItems,
   saveInputValue,
+  makeSearchItems,
+  searchTasks,
 } from '../../../redux/actions';
 
 class TodoTestTask extends React.Component {
@@ -49,11 +50,22 @@ class TodoTestTask extends React.Component {
     saveInputValue(payload);
   }
 
+  getSearchValues(e) {
+    const { makeSearchItems } = this.props;
+    makeSearchItems(e.target.value);
+  }
+
+  inputClear(e) {
+    const { itemsFetchData } = this.props;
+    e.target.value = null;
+    itemsFetchData();
+  }
+
   renderTasts = items => (
     <React.Fragment>
       {items.map(item => <TodoItem key={item._id} data={item} />)}
     </React.Fragment>
-  )
+  );
 
   render() {
     const { todos } = this.props;
@@ -74,6 +86,12 @@ class TodoTestTask extends React.Component {
             todos && todos.items ?
               <div className={style.container}>
                 <h2 className={style.title}>Tasks:</h2>
+                <div className={style.search}>
+                  <span>Search:</span>
+                  <div>
+                    <input onBlur={(e) => {this.inputClear(e)}} onChange={e => this.getSearchValues(e)} className={style.searchValue} type="text" />
+                  </div>
+                </div>
                 <h3>Unsolved tasks:</h3>
                 { unsolvedTasks.length !== 0 ? this.renderTasts(unsolvedTasks) : 'No such items' }
                 <h3>Complate tasks:</h3>
@@ -96,18 +114,9 @@ const mapDispatchToProps = dispatch => (
     itemsFetchData,
     postTodoItems,
     saveInputValue,
+    makeSearchItems,
+    searchTasks,
   }, dispatch)
 );
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoTestTask);
-
-// <div className={style.formContainer}>
-//             <h2 className={style.title}>Create message:</h2>
-//             <span>Title:</span>
-//             <input className={style.titleValue} type="text" onChange={e => this.saveValue(e, 'title')} />
-//             <span>Text:</span>
-//             <textarea className={style.textValue} type="text" onChange={e => this.saveValue(e, 'text')} />
-//             <div className={style.buttonContainer}>
-//               <Button accept="true" onClick={() => this.handleClick(todos.todoValue)}>Accept</Button>
-//             </div>
-//           </div>

@@ -12,6 +12,15 @@ function listTodoFunc() {
 }
 module.exports.listTodo = listTodoFunc;
 
+module.exports.searchTodo = function (data) {
+  const { data: searchText } = data;
+  const regx = new RegExp(searchText);
+  const find = Todo.find({
+    title: regx,
+  });
+  return find;
+};
+
 module.exports.createTodo = function (data) {
   const todo = new Todo({
     title: data.title,
